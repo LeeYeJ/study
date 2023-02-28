@@ -22,7 +22,7 @@ model.compile(loss='mse', optimizer='adam')
 model.fit(x,y, epochs=560)  # w값이 계속 갱신
 
 # 4. 평가, 예측
-loss = model.evaluate(x,y) # 위에 가중치에 데이터를 넣어서 무슨 값이 나오는지 평가한다. (나중에는 데이터 안넣음 왜냐 훈련되지않은 데이터를 평가하기 위해) 즉, 모델의 정확도를 평가힐 수 있다.git 
+loss = model.evaluate(x,y) # 위에 가중치에 데이터를 넣어서 무슨 값이 나오는지 평가한다. (나중에는 데이터 안넣음 왜냐 훈련되지않은 데이터를 평가하기 위해) 즉, 모델의 정확도를 평가힐 수 있다.
 print('loss : ', loss)
 
 result = model.predict([4]) # 예측하는 값 4
