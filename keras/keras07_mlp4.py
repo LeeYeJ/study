@@ -30,7 +30,7 @@ loss = model.evaluate(x,y,batch_size=1)
 print('loss :' , loss)
 
 result = model.predict([[9,30,210]])
-print('result :', result)
+print('[[9,30,210]]의 result :', result)
 '''
 Epoch 500/500
 10/10 [==============================] - 0s 881us/step - loss: 4.2036e-11

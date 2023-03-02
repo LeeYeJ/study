@@ -30,7 +30,7 @@ loss=model.evaluate(x,y)
 print('loss :', loss)
 
 result = model.predict([[9,30,210]])
-print('result :', result)
+print('[[9,30,210]]의 result :', result)
 
 #[실습] 
 #예측 : [[9.20.210]] -> 예상값 [[10,1.9]]

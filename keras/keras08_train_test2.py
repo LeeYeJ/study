@@ -37,7 +37,7 @@ loss=model.evaluate(x_test,y_test)
 print('loss :', loss)
 
 result=model.predict([11])
-print('result :', result)
+print('[11]의 result :', result)
 '''
 
 model=Sequential()

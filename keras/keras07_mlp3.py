@@ -34,7 +34,7 @@ loss = model.evaluate(x,y)
 print('loss :' , loss)
 
 result = model.predict([[10,1.4,0]])
-print('result :', result)
+print('[[10,1.4,0]]의 result :', result)
 
 '''
 loss : 0.0026700710877776146
