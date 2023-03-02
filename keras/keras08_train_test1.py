@@ -1,4 +1,4 @@
-#전체 데이터에서 일부는 훈련 시키고 일부는 평가에 사용한다.!!!!
+#전체 데이터에서 일부는 훈련 시키고 일부는 평가에 사용한다.!!!! (훈련한 데이터를 평가하는 것은 그렇게 의미있는 행동은 아니잖아)
 
 import numpy as np
 from tensorflow.keras.models import Sequential
