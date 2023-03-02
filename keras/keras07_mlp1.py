@@ -33,14 +33,15 @@ model.add(Dense(1))
 
 #3.컴파일 훈련
 model.compile(loss='mae', optimizer='adam')
-model.fit(x,y,epochs=1000,batch_size=1)
+model.fit(x,y,epochs=1000,batch_size=2)
 
 #4 평가 예측
-loss = model.evaluate(x,y)
-print('loss :', loss)
+loss = model.evaluate(x,y) # 위에 가중치에 데이터를 넣어서 무슨 값이 나오는지 평가한다. (나중에는 데이터 안넣음 왜냐 훈련되지않은 데이터를 평가하기 위해) 즉, 모델의 정확도를 평가힐 수 있다
+print('loss :', loss) #fit에서 생성된 w값을 가지고  평가를 하는 것이다.
 
 result = model.predict([[10,1.4]]) #[10,1.4]을 넣아주면 벡터형태라 오류뜬다 (10,) 따라서 [[10,1.4]]로 변경
 print('[10,1.4]의 값은 : ', result)
+
 
 #loss : 0.019304942339658737
 #1/1 [==============================] - 0s 72ms/step
