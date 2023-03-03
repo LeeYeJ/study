@@ -21,7 +21,7 @@ x= np.array([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]) #데이터를 
 y= np.array([1,2,4,3,5,7,9,3,8,12,13,8,14,15,9,6,17,23,21,20]) 
 
 x_train, x_test, y_train, y_test = train_test_split(x, y, #x는 x_train과 x_test로 분리되고, y는 y_train과 y_test 순서로! 분리된다.
-     train_size=0.75, shuffle=True, random_state= 111
+     train_size=0.75, shuffle=True, random_state= 1234
 )
 
 #2.모델 구성
@@ -36,7 +36,7 @@ model.add(Dense(1))
 
 #3. 컴파일 훈련
 model.compile(loss='mae', optimizer='adam')
-model.fit(x_train,y_train,epochs=100, batch_size=1)
+model.fit(x_train,y_train,epochs=500, batch_size=1)
 
 #4.평가 예측
 loss=model.evaluate(x_test,y_test)

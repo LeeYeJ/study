@@ -32,7 +32,7 @@ print('loss : ', loss)
 y_predict=model.predict(x_test) # 훈련 안시킨 데이터에서 예측하자 아래
 
 from sklearn.metrics import r2_score
-r2 = r2_score(y_test, y_predict) # 원값과 예측값이 얼마나 맞는지 확인할 수 있다. / 얘도 훈련안한 y_test로 확인해보자 (내신,수능 비교)
+r2 = r2_score(y_test, y_predict) # 원값과 예측값이 얼마나 맞는지 확인할 수 있다. / 얘도 훈련안한 y_test로 확인해보자 (내신,수능 비교), loss 보조
 print('r2스코어 :', r2) # 값은 1과 가까울 수록 좋다.
 
 # r2와 loss의 값이 엉키면 loss로 판단한다. 거의 절대적인 값이기 때문에
