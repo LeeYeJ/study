@@ -17,7 +17,7 @@ x=x.T
 x_test,x_train,y_test,y_train= train_test_split(
     x,y,
     shuffle=True,
-    train_size=0.6,
+    train_size=0.6, # 만약 6:3으로 나누면 10프로는 날아감.
     random_state=1 # 랜덤 데이터 고정값
     
 )

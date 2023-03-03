@@ -12,7 +12,8 @@ from sklearn.model_selection import train_test_split
 x_train, x_test, y_train, y_test = train_test_split(
     x, y, 
     test_size=0.3, 
-    #train_size=0.7,
+    #train_size=0.7,    
+    #랜덤 씨드 난수 잘찾는것도 중요할듯..?
     random_state=1234, # 랜덤값을 고정한다!! 랜덤씨드로 고정값! 또는 랜덤 스테이트 123에 있는 형식대로
     shuffle=True, # 디폴트가 트루
     )

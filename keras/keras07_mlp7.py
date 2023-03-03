@@ -1,4 +1,4 @@
-# x는 1개 Y는 3개
+# x는 1개 Y는 3개 (실무에는 거의 안나옴)
 
 import numpy as np
 from tensorflow.keras.models import Sequential

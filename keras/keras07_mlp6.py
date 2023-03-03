@@ -21,9 +21,9 @@ model.add(Dense(4))
 model.add(Dense(3))
 
 model.compile(loss ='mae', optimizer='adam')
-model.fit(x,y,epochs=1000,batch_size=1)
+model.fit(x,y,epochs=1000,batch_size=1) # 가중치가 결정된다.
 
-loss = model.evaluate(x,y)
+loss = model.evaluate(x,y) #fit한 데이터를 널어주어서 훈련 로스값과 같다.
 print('loss :' , loss)
 
 result = model.predict([[9,30,210]])

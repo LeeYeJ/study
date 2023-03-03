@@ -27,7 +27,7 @@ model.add(Dense(1))
 
 #컴파일 훈련
 model.compile(loss='mse', optimizer='adam')
-model.fit(x_train,y_train,epochs=50,batch_size=1)
+model.fit(x_train,y_train,epochs=50,batch_size=1) #가중치가 결정됨
 
 #평가 훈련
 loss= model.evaluate(x_test,y_test)
