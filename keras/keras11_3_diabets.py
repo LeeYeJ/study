@@ -44,7 +44,7 @@ print('r2 score: ', r2)
 
 난수값 조정이 중요한거같다....
 
-
+난수값을 잘 찾는 방법이 있을까..?
 
 x_train, x_test, y_train, y_test = train_test_split(
     x,y, shuffle=True, train_size=0.9, random_state=123
@@ -144,4 +144,30 @@ Epoch 700/700
 loss : 1904.2257080078125
 2/2 [==============================] - 0s 0s/step
 r2 score:  0.7030471413335173
+########################################
+
+x_train, x_test, y_train, y_test = train_test_split(
+    x,y, shuffle=True, train_size=0.9, random_state=650874
+)
+
+model = Sequential()
+model.add(Dense(6,input_dim=10))
+model.add(Dense(6))
+model.add(Dense(5))
+model.add(Dense(5))
+model.add(Dense(5))
+model.add(Dense(5))
+model.add(Dense(6))
+model.add(Dense(1))
+
+model.compile(loss='mse', optimizer='adam')
+model.fit(x_train,y_train, epochs=500, batch_size=100)
+
+Epoch 500/500
+4/4 [==============================] - 0s 997us/step - loss: 3028.5078
+2/2 [==============================] - 0s 0s/step - loss: 1622.0149
+loss : 1622.014892578125
+2/2 [==============================] - 0s 0s/step
+r2 score:  0.7237304881070897
+
 '''

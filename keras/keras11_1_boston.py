@@ -18,7 +18,7 @@ y = datasets.target
 # 타겟부분은 y데이터
 
 x_train, x_test, y_train, y_test = train_test_split(x, y, #x는 x_train과 x_test로 분리되고, y는 y_train과 y_test 순서로! 분리된다.
-     train_size=0.7, shuffle=True, random_state= 1234
+     train_size=0.7, shuffle=True, random_state= 5046
 )
 
 
@@ -59,7 +59,7 @@ model.add(Dense(1))
 
 #3. 컴파일 훈련
 model.compile(loss='mae', optimizer='adam')
-model.fit(x_train,y_train,epochs=1000, batch_size=253          )
+model.fit(x_train,y_train,epochs=1000, batch_size=10          )
 
 #4.평가 예측
 loss=model.evaluate(x_test,y_test)
