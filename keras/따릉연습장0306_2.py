@@ -1,7 +1,10 @@
+#+써밋
+
 # 데이터 따릉이 문제풀이
 # id는 데이터 아님 -> 색인.
 # 테스트 데이터는 프레딕트에서만 쓰고 트레인 데이터는 분리해서 훈련해준다.
 # 중단점은 실행시키고 싶은 지점의 다음 실행코드 앞에 중단점 찍어준다. 그럼 그 전까지 실행
+# 테스트 csv의 결측값 건들면 안됨?
 
 import numpy as np
 from tensorflow.keras.models import Sequential
@@ -61,7 +64,6 @@ min       0.000000              3.100000                0.000000            0.00
 max      23.000000             30.000000                1.000000            8.000000          99.000000          2000.000000        0.125000     269.000000       90.000000   431.000000
 mean -> 평균
 std -> ?
-
 '''
 print(type(train_csv)) #데이터 타입 <class 'pandas.core.frame.DataFrame'>
 ###########################결측치 처리################################
@@ -94,7 +96,7 @@ print(y)
 #############################################################
 
 x_train,x_test,y_train,y_test=train_test_split(
-    x,y,shuffle=True,random_state=79,train_size=0.7
+    x,y,shuffle=True,random_state=3507,train_size=0.7
 )
 #전체 train 사이즈에서 0.7만큼인 1021개의 데이터가 train 나머지가 test <=이 데이터는 모두 train_csv 데이터이다.
 print(x_train.shape, x_test.shape) # (1021, 9) (438, 9) -> (929, 9) (399, 9) 결측치 삭제 값
@@ -104,24 +106,43 @@ print(y_train.shape,y_test.shape) # (1021,) (438,) -> (929,) (399,) 결측치 �
 #2. 모델구성
 
 model = Sequential()
-model(Dense(6,input_dim=9))
-model(Dense(5))
-model(Dense(6))
-model(Dense(6))
-model(Dense(5))
-model(Dense(7))
-model(Dense(5))
+model(Dense(9,input_dim=9))
 model(Dense(1))
+
 
 #3.컴파일 훈련
 
 model.compile(loss='mse', optimizer='adam')
-model.fit(x_train,y_train,epochs=74,batch_size=40, verbose=1)
+model.fit(x_train,y_train,epochs=500,batch_size=30, verbose=1)
 
 #4.평가 예측
 
 loss=model.evaluate(x_test,y_test)
 print('loss : ',loss)
 
+y_predict= model.predict(x_test.sum(axis=1))
 
+print(x_test.shape,y_test.shape, y_predict.shape)
 
+r2 = r2_score(y_test,y_predict)
+print('r2 스코어:',r2)
+
+def RMSE(y_test,y_predict): #RMSE 함수 정의
+    return np.sqrt(mean_squared_error(y_test,y_predict)) # mse에 np.sqrt() 루트 씌어줌
+rmse = RMSE(y_test,y_predict) # 함수 사용
+
+print('RMSE :', rmse)
+
+########submit.csv를 만들자############
+#print(test_csv.isnull().sum()) 여기도 결측치가 있다
+y_submit=model.predict(test_csv)
+print(y_submit)
+
+submisson = pd.read_csv(path + 'submission.csv',index_col=0)
+print(submisson) #nan자리에 값을 넣어주자
+submisson['count'] = y_submit #count 컬럼에 count 값을 넣어주자
+print(y_submit)
+
+#파일로 바꿔서 저장해주자
+submisson.to_csv(path + 'submit_0306_0447.csv') #저장할때는 to_csv 읽어올땐 read_csv
+# 만들어진 파일을 첨부해서 제출한다. 메모는 0306_0449 재출
