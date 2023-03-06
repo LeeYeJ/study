@@ -61,7 +61,7 @@ y = train_csv['count'] # 변수에서 제외한 count 컬럼을 y 변수에 저�
 print(y)
 # ======================================= train_csv 데이터에서 x와y를 분리 ===========================
 
-x_train, x_test, y_train, y_test = train_test_split(x,y,train_size=0.9,shuffle=True,random_state=7)
+x_train, x_test, y_train, y_test = train_test_split(x,y,train_size=0.9,shuffle=True,random_state=6052)
 
 print(x_train.shape, x_test.shape) # (1021, 9) (438, 9) -> (929, 9) (399, 9)
 print(y_train.shape, y_test.shape) # (1021,) (438,) -> (929,) (399,)
@@ -78,7 +78,7 @@ model.add(Dense(1))
 
 #3 컴파일, 훈련
 model.compile(loss = 'mae', optimizer = 'adam')
-model.fit(x_train, y_train, epochs = 1000, batch_size = 35, verbose = 1)
+model.fit(x_train, y_train, epochs = 1200, batch_size = 30, verbose = 1)
 
 #4 평가, 예측
 loss = model.evaluate(x_test, y_test)
@@ -104,7 +104,7 @@ print(submission)
 submission['count'] = y_submit
 print(submission)
 
-submission.to_csv(path + 'submit_0306_0807.csv')
+submission.to_csv(path + 'submit_0306_0809.csv')
 
 
 # 데이터
