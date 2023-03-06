@@ -12,7 +12,7 @@ y= datasets.target
 print(x.shape,y.shape) #(20640, 8) (20640,)
 
 x_train, x_test, y_train, y_test = train_test_split(
-    x,y, shuffle=True, train_size=0.9, random_state=3060
+    x,y, shuffle=True, train_size=0.9, random_state=123
 )
 # [실습] 
 # R2 0.55~0.6  이상
@@ -27,8 +27,8 @@ model.add(Dense(5))
 model.add(Dense(6))
 model.add(Dense(1))
 
-model.compile(loss='mae', optimizer='adam')
-model.fit(x_train,y_train, epochs=500, batch_size=100)
+model.compile(loss='mse', optimizer='adam')
+model.fit(x_train,y_train, epochs=700, batch_size=50)
 
 loss=model.evaluate(x_test,y_test)
 print('loss :', loss)

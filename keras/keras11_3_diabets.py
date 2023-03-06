@@ -15,7 +15,7 @@ y = datasets.target
 R2 0.62 이상
 '''
 x_train, x_test, y_train, y_test = train_test_split(
-    x,y, shuffle=True, train_size=0.9, random_state=650874
+    x,y, shuffle=True, train_size=0.9, random_state=123
 )
 
 model = Sequential()
@@ -36,7 +36,8 @@ print('loss :', loss)
 
 y_predict = model.predict(x_test)
 
-r2= r2_score(y_test, y_predict)
+r2= r2_score(y_test, y_predict) #loss와 같이 판단해야한다, r2는 보조지표이기때문에!
+print(x_test.shape,y_test.shape,y_predict.shape)
 print('r2 score: ', r2)
 
 '''

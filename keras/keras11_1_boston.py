@@ -18,9 +18,10 @@ y = datasets.target
 # 타겟부분은 y데이터
 
 x_train, x_test, y_train, y_test = train_test_split(x, y, #x는 x_train과 x_test로 분리되고, y는 y_train과 y_test 순서로! 분리된다.
-     train_size=0.7, shuffle=True, random_state= 5046
+     train_size=0.7, shuffle=True, random_state=1188
 )
 
+#random_state= 7995,45681
 
 #print(x)
 #print(y)
@@ -58,8 +59,8 @@ model.add(Dense(6))
 model.add(Dense(1))
 
 #3. 컴파일 훈련
-model.compile(loss='mae', optimizer='adam')
-model.fit(x_train,y_train,epochs=1000, batch_size=10          )
+model.compile(loss='mse', optimizer='adam')
+model.fit(x_train,y_train,epochs=3000, batch_size=100 )
 
 #4.평가 예측
 loss=model.evaluate(x_test,y_test)
@@ -70,3 +71,84 @@ y_predict=model.predict(x_test) # 훈련 안시킨 데이터에서 예측하자 
 from sklearn.metrics import r2_score
 r2 = r2_score(y_test, y_predict) # 원값과 예측값이 얼마나 맞는지 확인할 수 있다. / 얘도 훈련안한 y_test로 확인해보자 (내신,수능 비교)
 print('r2스코어 :', r2) # 값은 1과 가까울 수록 좋다.
+
+'''
+x_train, x_test, y_train, y_test = train_test_split(x, y, #x는 x_train과 x_test로 분리되고, y는 y_train과 y_test 순서로! 분리된다.
+     train_size=0.9, shuffle=True, random_state=4
+)
+
+loss='mae'
+
+2/2 [==============================] - 0s 0s/step - loss: 2.9821
+loss :  2.982077121734619
+2/2 [==============================] - 0s 996us/step
+r2스코어 : 0.7524482772227262
+---------------------------------------------------------------------------------------------------------------------
+x_train, x_test, y_train, y_test = train_test_split(x, y, #x는 x_train과 x_test로 분리되고, y는 y_train과 y_test 순서로! 분리된다.
+     train_size=0.7, shuffle=True, random_state=2
+)
+
+model.compile(loss='mae', optimizer='adam')
+model.fit(x_train,y_train,epochs=700, batch_size=10 )
+
+Epoch 700/700
+36/36 [==============================] - 0s 913us/step - loss: 3.7843
+5/5 [==============================] - 0s 5ms/step - loss: 3.1567
+loss :  3.1566600799560547
+5/5 [==============================] - 0s 821us/step
+r2스코어 : 0.715024891209413
+------------------------------------------------------
+x_train, x_test, y_train, y_test = train_test_split(x, y, #x는 x_train과 x_test로 분리되고, y는 y_train과 y_test 순서로! 분리된다.
+     train_size=0.7, shuffle=True, random_state=587
+)
+
+model.compile(loss='mse', optimizer='adam')
+model.fit(x_train,y_train,epochs=3000, batch_size=100 )
+
+Epoch 3000/3000
+4/4 [==============================] - 0s 1ms/step - loss: 28.1496
+5/5 [==============================] - 0s 4ms/step - loss: 15.3093
+loss :  15.309255599975586
+5/5 [==============================] - 0s 805us/step
+r2스코어 : 0.8122799584732157
+-------------------------------------------------------
+x_train, x_test, y_train, y_test = train_test_split(x, y, #x는 x_train과 x_test로 분리되고, y는 y_train과 y_test 순서로! 분리된다.
+     train_size=0.7, shuffle=True, random_state=709
+)
+4/4 [==============================] - 0s 2ms/step - loss: 27.0326
+5/5 [==============================] - 0s 4ms/step - loss: 16.1928
+loss :  16.192752838134766
+5/5 [==============================] - 0s 745us/step
+r2스코어 : 0.8144975751848098
+--------------------------------------------------------
+x_train, x_test, y_train, y_test = train_test_split(x, y, #x는 x_train과 x_test로 분리되고, y는 y_train과 y_test 순서로! 분리된다.
+     train_size=0.7, shuffle=True, random_state=903
+)
+Epoch 3000/3000
+4/4 [==============================] - 0s 1ms/step - loss: 27.4075
+5/5 [==============================] - 0s 4ms/step - loss: 15.8519
+loss :  15.851949691772461
+5/5 [==============================] - 0s 636us/step
+r2스코어 : 0.8071997998159424
+--------------------------------------------------------
+x_train, x_test, y_train, y_test = train_test_split(x, y, #x는 x_train과 x_test로 분리되고, y는 y_train과 y_test 순서로! 분리된다.
+     train_size=0.7, shuffle=True, random_state=1036
+)
+Epoch 3000/3000
+4/4 [==============================] - 0s 1ms/step - loss: 26.5536
+5/5 [==============================] - 0s 789us/step - loss: 17.3756
+loss :  17.375646591186523
+5/5 [==============================] - 0s 0s/step
+r2스코어 : 0.804257656313496
+---------------------------------------------------------------
+x_train, x_test, y_train, y_test = train_test_split(x, y, #x는 x_train과 x_test로 분리되고, y는 y_train과 y_test 순서로! 분리된다.
+     train_size=0.7, shuffle=True, random_state=1188
+)
+4/4 [==============================] - 0s 1ms/step - loss: 26.8784
+5/5 [==============================] - 0s 0s/step - loss: 17.6412
+loss :  17.6412296295166
+5/5 [==============================] - 0s 1ms/step
+r2스코어 : 0.8191977608601066
+-------------------------------------------------------------------
+'''
+
