@@ -33,7 +33,7 @@ model.add(Dense(6))
 model.add(Dense(1))
 
 model.compile(loss='mse', optimizer='adam')
-model.fit(x_train,y_train, epochs=700, batch_size=50, validation_data=(x_val,y_val))
+model.fit(x_train,y_train, epochs=50, batch_size=50, validation_data=(x_val,y_val))
 
 loss=model.evaluate(x_test,y_test)
 print('loss :', loss)
@@ -52,4 +52,8 @@ validation_data=(x_val,y_val)
 fit에서 발리할 각 변수를 넣어준다.
 
 여기까지가 한 세트
+'''
+
+'''
+
 '''
