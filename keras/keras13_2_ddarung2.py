@@ -1,3 +1,7 @@
+#https://aichallenge.or.kr/competition/detail/1 인공지능 경진대회
+#https://aifactory.space/ 인공지능 팩토리
+#https://developers.google.com/certification/directory/tensorflow?hl=ko 
+
 import numpy as np
 import pandas as pd
 from tensorflow.keras.models import Sequential
@@ -9,6 +13,7 @@ from sklearn.metrics import r2_score, mean_squared_error
 #1 데이터
 
 path = './_data/ddarung/'# '.' : 현재 폴더
+path_save = './_save/ddarung/' 
 
 train_csv = pd.read_csv(path + 'train.csv', index_col = 0) # 인덱스 컬럼 0, 헤더와 인덱스는 연산 X, 행과 컬럼을 식별해준다.
 # train_csv = pd.read_csv('./_data/ddarung/train.csv')
@@ -78,7 +83,7 @@ model.add(Dense(1))
 
 #3 컴파일, 훈련
 model.compile(loss = 'mae', optimizer = 'adam')
-model.fit(x_train, y_train, epochs = 1200, batch_size = 30, verbose = 1)
+model.fit(x_train, y_train, epochs = 120, batch_size = 30, verbose = 1)
 
 #4 평가, 예측
 loss = model.evaluate(x_test, y_test)
@@ -101,10 +106,11 @@ print(y_submit)
 
 submission = pd.read_csv(path + 'submission.csv', index_col = 0)
 print(submission)
+#제출파일의 count에 y_submit을 넣어준다.
 submission['count'] = y_submit
 print(submission)
 
-submission.to_csv(path + 'submit_0306_0809.csv')
+submission.to_csv(path_save + 'submit_0307_0945.csv')
 
 
 # 데이터
@@ -114,3 +120,10 @@ submission.to_csv(path + 'submit_0306_0809.csv')
 # train_csv = train_csv.dropna()
 # x = train_csv.drop(['count'], axis = 1)
 # y = train_csv['count']
+'''
+터미널과 제출 결과값이 다른 이유는 
+여기서는 train 데이터로 rmse를 낸거고 제출할땐 test.csv데이터에서 뽑으니까 값이 다를수밖에. 
+결측치의 영향도 있음
+'''
+# df.head() 는 다섯개의 행만 보여줌
+
