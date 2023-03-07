@@ -1,4 +1,4 @@
-#랜덤 웨이트값 던질때 음수로 주어질수도 있음. 그러면 최종값이 음수가 될수도 있음.
+#핏에서 validation_split=0.2 써줌
 
 #모델링까지
 import numpy as np
@@ -71,17 +71,6 @@ def RMSE(y_test,y_pre):
 rmse=RMSE(y_test,y_pre) #사용
 print('RMSE :',rmse)
 
-###########결과############
-#y_sub는 test_csv를 입력해 예측값을 얻음
-# y_sub=model.predict(test_csv)
-# print(y_sub)
-# print(y_sub.shape)
-
-# submiss=pd.read_csv(path +'sampleSubmission.csv',index_col=0)
-# print(submiss.shape)
-# submiss['count']=y_pre #submission['count']에 y_pre 넣어줌
-# print(submiss)
-
 #카운트값 빼기
 y_submit = model.predict(test_csv)
 print(y_submit)
@@ -95,6 +84,9 @@ submission['count'] = y_submit
 print(submission)
 
 submission.to_csv(path_save + 'submit_0307_2045.csv')
+'''
+
+'''
 
 
 
