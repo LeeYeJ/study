@@ -3,8 +3,8 @@
 #모델링까지
 import numpy as np
 import pandas as pd
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense
+from tensorflow.python.keras.models import Sequential
+from tensorflow.python.keras.layers import Dense
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score,mean_squared_error
 
@@ -54,7 +54,7 @@ model.add(Dense(1))
 
 #컴파일 훈련
 model.compile(loss='mae',optimizer='adam')
-model.fit(x_train,y_train,epochs=800,batch_size=200)
+model.fit(x_train,y_train,epochs=500,batch_size=200,validation_split=0.2)
 
 #평가
 loss= model.evaluate(x_test,y_test)
@@ -94,7 +94,7 @@ print(submission)
 submission['count'] = y_submit
 print(submission)
 
-submission.to_csv(path_save + 'submit_0307_1611.csv')
+submission.to_csv(path_save + 'submit_0307_2045.csv')
 
 
 
