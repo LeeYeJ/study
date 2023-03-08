@@ -26,8 +26,31 @@ model.add(Dense(1))
 #컴파일 훈련
 
 model.compile(loss='mse', optimizer='adam')
-hist= model.fit(x_train,y_train, epochs=500, batch_size=50, validation_split=0.2)
+hist= model.fit(x_train,y_train, epochs=10, batch_size=50, validation_split=0.2)
+
+print(hist) #<tensorflow.python.keras.callbacks.History object at 0x0000015BC965E250>
+print('==========================')
 print(hist.history)
+'''
+{'loss': [661.46142578125, 586.4367065429688, 531.8495483398438, 479.5317687988281, 412.90557861328125, 
+332.769775390625, 263.0555725097656, 212.4530792236328, 193.12322998046875, 186.6245574951172], 
+
+'val_loss': [605.1642456054688, 545.0879516601562, 494.89654541015625, 432.573486328125, 355.6365966796875, 
+277.7493896484375, 214.8768310546875, 182.39605712890625, 175.0891571044922, 168.51902770996094]}
+'''
+print('==========================')
+print(hist.history['loss'])
+'''
+[219.62176513671875, 184.17086791992188, 171.16598510742188, 153.6690673828125, 143.3023681640625, 
+135.28530883789062, 127.63369750976562, 121.48835754394531, 115.06039428710938, 109.5584945678711]
+'''
+print('==========================')
+print(hist.history['val_loss'])
+'''
+[173.7381591796875, 164.6244659423828, 147.9994659423828, 133.49586486816406, 125.65687561035156, 
+118.78868865966797, 114.18157958984375, 108.2010269165039, 103.2557373046875, 98.12283325195312]
+'''
+
 
 #로스값은 핏에 저장되어있다. model.fit은 결과치를 반환한다. 변수에 저장해서. -> 데이터 형태만 나옴 -> print(hist.history) -> 로스값들 나옴
 '''
@@ -42,9 +65,10 @@ print(hist.history)
 45.2325439453125, 45.05647277832031, 44.97794723510742, 50.82244110107422, 46.16643524169922, 41.485965728759766, 48.913639068603516]}
 '''
 
-import matplotlib.pyplot as plt
-plt.rcParams['font.family'] = 'Malgun Gothic'
-plt.figure(figsize=(9,6))
+import matplotlib.pyplot as plt 
+import matplotlib
+plt.rcParams['font.family'] = 'Malgun Gothic' # 한글깨짐 해결 #다르 폰트 필요하면 윈도우 폰트 파일에 추가해줘야됨 # 상용할땐 나눔체로 쓰자.
+plt.figure(figsize=(9,6)) #그래프의 사이즈 , 단위는 inch
 plt.plot(hist.history['loss'],marker='.',c='red',label='loss') # 순서대로 갈때는 x명시할 필요 없을
 plt.plot(hist.history['val_loss'],marker='.',c='blue',label='val_loss') #marker='.' 점점으로 표시->선이 됨
 plt.title('보스턴')
@@ -53,8 +77,8 @@ plt.ylabel('loss , val_loss')
 plt.legend() # 선에 이름 표시
 plt.grid() #격자 표시
 plt.show()
+
 #발로스가 더 중요하다고?
 
-
-
+# 클래스 함수 차이 -> 분량은 반이상 차게 이메일 제출
 

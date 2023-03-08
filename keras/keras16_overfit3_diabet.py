@@ -16,7 +16,7 @@ x_train,x_test,y_train,y_test=train_test_split(
     x,y,shuffle=True,random_state=123,test_size=0.2
 )
 x_train,x_val,y_train,y_val=train_test_split(
-    x_train,y_train,shuffle=True,random_state=66,train_size=0.7
+    x_train,y_train,shuffle=True,random_state=66,train_size=0.6
 )
 
 #모델구성
@@ -29,7 +29,7 @@ model.add(Dense(7,activation='relu'))
 model.add(Dense(1))
 
 model.compile(loss='mse',optimizer='adam')
-hist=model.fit(x_train,y_train,epochs=100,batch_size=30,validation_data=(x_val,y_val))
+hist=model.fit(x_train,y_train,epochs=100,batch_size=1,validation_data=(x_val,y_val))
 
 plt.plot(hist.history['loss'])
 plt.show()
