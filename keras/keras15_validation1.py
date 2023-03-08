@@ -28,7 +28,7 @@ model.fit(x_train,y_train,epochs=100,batch_size=1,
           validation_data=(x_val,y_val)) #훈련하고 검증하고의 반복  val_loss: 0.4519 검증 로스값도 나옴
 
 #평가예측
-loss=model.evaluate(x_test,y_test)
+loss=model.evaluate(x_test,y_test) #정답률과 loss 값을 알 수 있다
 print('loss :',loss)
 
 result=model.predict([17])
