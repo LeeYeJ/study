@@ -8,7 +8,7 @@ from tensorflow.python.keras.callbacks import EarlyStopping
 import matplotlib.pylab as plt
 
 path='./_data/ddarung/'
-path_save='./_save/ddarung'
+path_save='./_save/ddarung/'
 
 train_csv=pd.read_csv(path+'train.csv', index_col=0)
 
