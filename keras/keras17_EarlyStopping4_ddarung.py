@@ -30,24 +30,24 @@ y=train_csv['count']
 #데이터분리
 
 x_train,x_test,y_train,y_test=train_test_split(
- x,y,shuffle=True,random_state=12334,test_size=0.1
+ x,y,shuffle=True,random_state=4897567,test_size=0.1
 )
 
 #모델
 model = Sequential()
 model.add(Dense(6, input_dim = 9))
 model.add(Dense(8))
-model.add(Dense(9))
-model.add(Dense(7))
+model.add(Dense(9,activation='relu'))
+model.add(Dense(7,activation='relu'))
 model.add(Dense(6))
-model.add(Dense(10))
+model.add(Dense(10,activation='relu'))
 model.add(Dense(1))
 
 #컴파일
-es=EarlyStopping(monitor='val_loss',mode='min',patience=30,restore_best_weights=True)
+es=EarlyStopping(monitor='val_loss',mode='min',patience=100,restore_best_weights=True)
 
 model.compile(loss='mae',optimizer='adam')
-hist=model.fit(x_train,y_train,epochs=200, batch_size=50,validation_split=0.2,callbacks=[es])
+hist=model.fit(x_train,y_train,epochs=2000, batch_size=5,validation_split=0.1,callbacks=[es])
 
 loss=model.evaluate(x_test,y_test)
 print('loss:',loss)
@@ -65,7 +65,7 @@ print('rmse:',rmse)
 y_sub=model.predict(test_csv)
 submission = pd.read_csv(path + 'submission.csv', index_col = 0)
 submission['count'] = y_sub
-submission.to_csv(path_save + 'submit_0308_1940.csv')
+submission.to_csv(path_save + 'submit_0310_1956.csv')
 
 plt.plot(hist.history['val_loss'])
 plt.show()
@@ -90,6 +90,17 @@ loss: 43.37683868408203
 r2: 0.5130379170439884
 rmse: 57.66937949994228
 '''
+'''
+x_train,x_test,y_train,y_test=train_test_split(
+ x,y,shuffle=True,random_state=6628,test_size=0.1
+)
 
+Epoch 675/2000
+215/215 [==============================] - 0s 856us/step - loss: 30.8547 - val_loss: 28.9135
+5/5 [==============================] - 0s 0s/step - loss: 35.4379
+loss: 35.43791961669922
+r2: 0.6081684412903396
+rmse: 53.92234793811492
+'''
 
 
