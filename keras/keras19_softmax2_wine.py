@@ -50,7 +50,7 @@ print('loss :', loss)
 y_pre=np.argmax(model.predict(x_test),axis=1)
 
 
-# y_pre = to_categorical(y_pre)
+y_pre = to_categorical(y_pre)
 # print(y_pre)
 # print(y_pre.shape) #(178, 3)
 
