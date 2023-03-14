@@ -32,8 +32,7 @@ x_test,x_train,y_test,y_train=train_test_split(
 # 전처리는 데이터 분리 다음에 해준다.
 print(np.min(x),np.max(x)) #0.0 711.0 (0~711까지)
 scaler= MinMaxScaler() # StandardScaler 써줄거면 민맥스 대신 StandardScaler() 써주면 끝
-scaler.fit(x_train) # fit의 범위가 x_train이다
-scaler.fit(x_test) 
+scaler.fit(x_train) # fit의 범위가 x_train이다 
 x_train=scaler.transform(x_train) #변환시키라
 x_test=scaler.transform(x_test) # x_train의 범위에 맞춰서 변환해준다. 그래서 fit은 할 필요 없음
 print(np.min(x_test),np.max(x_test)) 

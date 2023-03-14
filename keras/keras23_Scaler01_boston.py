@@ -34,15 +34,15 @@ print(np.min(x_test),np.max(x_test))
 
 # 훈련데이터만 정규화한다.
 
-# #2.모델 구성
-# model=Sequential()
-# model.add(Dense(1,input_dim=13))
+#2.모델 구성
+model=Sequential()
+model.add(Dense(1,input_dim=13))
 
-# model.compile(loss='mse',optimizer='adam')
-# model.fit(x_train,y_train,epochs=10)
+model.compile(loss='mse',optimizer='adam')
+model.fit(x_train,y_train,epochs=10)
 
-# loss=model.evaluate(x_test,y_test)
-# print('loss :',loss)
+loss=model.evaluate(x_test,y_test)
+print('loss :',loss)
 
 
 
