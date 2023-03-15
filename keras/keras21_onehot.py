@@ -5,6 +5,7 @@
 #1. pandas의 get_dummies
 '''
 y = pd.get_dummies(y)
+y = np.array(y) # type 바꿔줘
 print(y.shape)
 
 '''
