@@ -4,13 +4,17 @@ from tensorflow.python.keras.models import Sequential
 from tensorflow.python.keras.layers import Dense,Conv2D,Flatten,MaxPooling2D, Dropout
 from tensorflow.keras.utils import to_categorical
 from sklearn.preprocessing import MinMaxScaler # 2차원에서만 됨
-from tensorflow.python.keras.callbacks import EarlyStopping
+from tensorflow.python.keras.callbacks import EarlyStopping, ModelCheckpoint
 from sklearn.metrics import accuracy_score
 
 (x_train,y_train),(x_test,y_test) =cifar10.load_data()
 
 print(x_train.shape,y_train.shape) # (50000, 32, 32, 3) (50000, 1)
 print(x_test.shape,y_test.shape) # (10000, 32, 32, 3) (10000, 1)
+
+import matplotlib.pyplot as plt
+plt.imshow(x_train[555],) #cmap='jet'
+plt.show()
 
 y_train = to_categorical(y_train) 
 y_test = to_categorical(y_test)  
@@ -53,8 +57,24 @@ import time
 start_time=time.time()
 
 model.compile(loss='categorical_crossentropy', optimizer='adam')
+
+import datetime # 시간을 저장해줌
+date = datetime.datetime.now() # 현재 시간
+print(date) # 2023-03-14 11:15:39.585470
+date = date.strftime('%m%d_%H%M') # 시간을 문자로 바꾼다 ( 월, 일, 시 ,분)
+print(date) # 0314_1115
+
+filepath='./_save/MCP/keras27_4/'
+filename = '{epoch:04d}-{val_loss:4f}.hdf5' #val_loss:4f 소수 넷째자리까지 받아와라
+
 es=EarlyStopping(monitor='loss',mode='auto',patience=10)
-model.fit(x_train,y_train,epochs=50, batch_size=512,validation_split=0.1, callbacks=[es])
+
+mcp= ModelCheckpoint(monitor='val_loss', mode='auto', verbose=1, # val_loss 기준, verbose=1 훈련중 확인 가능
+                    save_best_only=True,  # 가장 좋은 지점에서 세이브하기
+                    filepath="".join([filepath, 'k27_', date,'_',filename ])) # 경로는 이곳에 / .join 합친다는 뜻
+
+
+model.fit(x_train,y_train,epochs=50, batch_size=512,validation_split=0.1, callbacks=[es,mcp])
 end_time = time.time()
 
 results= model.evaluate(x_test,y_test)
@@ -71,3 +91,11 @@ print('acc :', acc)
 
 print('time:', round(end_time-start_time,2))
 
+'''
+Epoch 50/50
+88/88 [==============================] - 12s 137ms/step - loss: 1.2666 - val_loss: 1.2372
+313/313 [==============================] - 1s 3ms/step - loss: 1.2406
+results : 1.2405617237091064
+acc : 0.5574
+time: 556.5
+'''
