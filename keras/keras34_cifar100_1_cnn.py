@@ -1,7 +1,7 @@
 import numpy as np
 from tensorflow.keras.datasets import cifar100
-from tensorflow.python.keras.models import Sequential
-from tensorflow.python.keras.layers import Dense,Conv2D,Flatten,MaxPooling2D, Dropout
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense,Conv2D,Flatten,MaxPooling2D, Dropout
 from tensorflow.keras.utils import to_categorical
 from sklearn.preprocessing import MinMaxScaler # 2차원에서만 됨
 from tensorflow.python.keras.callbacks import EarlyStopping, ModelCheckpoint
@@ -24,7 +24,7 @@ x_test = x_test/255.
 model = Sequential()
 model.add(Conv2D(32,(2,2),input_shape=(32,32,3)))
 model.add(MaxPooling2D())
-model.add(Conv2D(10,(3,3),activation='relu'))
+model.add(Conv2D(20,(3,3),activation='relu'))
 model.add(MaxPooling2D())
 model.add(Conv2D(5,(2,2),padding='same'))
 model.add(Flatten())
