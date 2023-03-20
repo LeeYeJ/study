@@ -26,7 +26,7 @@ model.add(Conv2D(32,(2,2),input_shape=(32,32,3)))
 model.add(MaxPooling2D())
 model.add(Conv2D(20,(3,3),activation='relu'))
 model.add(MaxPooling2D())
-model.add(Conv2D(5,(2,2),padding='same'))
+model.add(Conv2D(5,(2,2),padding='same')) # padding 사이즈를 유지하기위해 사용함
 model.add(Flatten())
 model.add(Dense(8,activation='relu'))
 model.add(Dense(16, activation='relu'))

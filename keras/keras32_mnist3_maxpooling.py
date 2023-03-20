@@ -20,7 +20,7 @@ x_test= x_test.reshape(10000,28,28,1)
 
 model = Sequential()
 model.add(Conv2D(64,(2,2),padding='same',input_shape=(28,28,1)))
-model.add(MaxPooling2D()) # 중첩 안하고 있는것중에 가장 큰것으로 뽑음 디폴트가 (2,2) / ( 반띵 됨!!! )
+model.add(MaxPooling2D()) # 중첩 안하고 있는것중에 가장 큰것으로 뽑음 디폴트가 (2,2) / ( 반띵 됨!!! ) / 특성을 어느정도 잡아주고 쓰는것이 좋다
 model.add(Conv2D(filters=64,kernel_size=(2,2),activation='relu'))
 model.add(Conv2D(32,2)) # = (2,2)/ 예를들어 (3,3)이면 3 써줌
 model.add(Flatten())

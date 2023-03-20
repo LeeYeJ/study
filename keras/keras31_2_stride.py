@@ -6,7 +6,7 @@ from tensorflow.python.keras.layers import Dense, Conv2D, Flatten # cnn 하겠�
 model = Sequential()
 model.add(Conv2D(7, (2,2), 
                  padding='same',  # 패딩 적용되어서 사이즈가 변하지 않음(유지) (커널사이즈가 몇이든) # 대신 커널사이즈에 따른 파람 값은 달라진다.
-                 strides=2,
+                 strides=2, # 보폭 조절
                  input_shape=(9,9,1))) # 7장으로 늘렸다(연산량이 늘어남)/(2,2)로 자른다(자르는 크기)/input_shape=(5,5,1)이미지 형태 흑백=1, 컬러=3(5헹5열)
 #출력(N,7,7,7) -> (batcj_size. rows, colums, channels)가 다음부턴 filters가 됨
 model.add(Conv2D(filters=4, # 필터 (아웃풋 노드의 갯수)
