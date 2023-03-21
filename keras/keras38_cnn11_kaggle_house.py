@@ -51,7 +51,7 @@ print(x_test.shape) #(337, 78)
 print(test_csv.shape) #(1459, 78)
 
 # 1.7 Scaler
-scaler = MinMaxScaler()
+scaler = MinMaxScaler() # 여기서 어레이 형태로 해서 아래 리쉐잎때 변환안해줘도됨
 x_train = scaler.fit_transform(x_train)
 x_test = scaler.transform(x_test)
 test_csv = scaler.transform(test_csv)
@@ -142,3 +142,14 @@ submission.to_csv(path_save + 'kaggle_house_median' + date + '.csv')
 # plt.legend() # 선에 이름 표시
 # plt.grid() #격자 표시
 # plt.show()
+'''
+CNN값은
+21/21 [==============================] - 0s 3ms/step - loss: 747665472.0000 - acc: 0.0000e+00 - val_loss: 827545536.0000 - val_acc: 0.0000e+00
+Epoch 2000/2000
+21/21 [==============================] - 0s 3ms/step - loss: 749122240.0000 - acc: 0.0000e+00 - val_loss: 835700224.0000 - val_acc: 0.0000e+00
+11/11 [==============================] - 0s 1ms/step - loss: 2233231872.0000 - acc: 0.0000e+00
+loss :  [2233231872.0, 0.0]
+r2 :  0.7009229614136012
+'''
+
+#https://github.com/alsrlwjs56
