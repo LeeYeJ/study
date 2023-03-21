@@ -25,16 +25,20 @@ x = x.reshape(5,5,1) #[[[1],[2],[3]],[[2],[3],[4]].............]
 print(x.shape) # (7, 3, 1)
 
 #2.모델
-model= Sequential()
+model= Sequential() # [batch, timesteps, feature]
 model.add(SimpleRNN(10,input_shape=(5,1),activation='linear')) # 행 빼고 나머지/ 다른 모델들도 마찬가지임 / 32는 아웃풋 노드의 갯수
+# Rnn은 삼차원 받아서 이차원 출력한다.
+
+# units * (feature + biases + units) = params
+
 model.add(Dense(7))
 model.add(Dense(1))
 
 model.summary()
 
 '''
-param 갯수 = ( unit 개수 * unit 개수 ) + ( input_dim(feature) 수 * unit 개수 ) + ( 1 * unit 개수)
-              10*10    + 1*10      + 10
+param 갯수 = ( unit 개수 * unit 개수 ) + ( input_dim(feature) 수 * unit 개수 ) + ( 1(biases) * unit 개수)
+                  10*10                               + 1*10                              + 10
 
 Model: "sequential"
 _________________________________________________________________

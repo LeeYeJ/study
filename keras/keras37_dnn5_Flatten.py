@@ -17,12 +17,13 @@ print(y_train.shape, y_test.shape) #(60000, 10) (10000, 10)
 x_train= x_train.reshape(60000,28,28,1)
 x_test= x_test.reshape(10000,28,28,1)
 
-
+#Dense는 다차원을 받을수있다
 model = Sequential()
 model.add(Dense(64,input_shape=(28,28,)))
 model.add(Dense(9))
 model.add(Dense(8))
 model.add(Dense(7))
+model.add(Flatten())
 model.add(Dense(10,activation='softmax'))
 
 model.summary()

@@ -1,8 +1,8 @@
-# Rnn은 삼차원 받아서 이차원 출력한다.
+# Rnn에서 제일 성능 좋은게 엘에스티엠
 
 import numpy as np
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, SimpleRNN
+from tensorflow.keras.layers import Dense, SimpleRNN,LSTM
 from tensorflow.python.keras.callbacks import EarlyStopping
 
 #1.데이터
@@ -23,7 +23,7 @@ print(x.shape) # (7, 3, 1)
 
 #2.모델
 model= Sequential()
-model.add(SimpleRNN(16,input_shape=(3,1))) # 행 빼고 나머지/ 다른 모델들도 마찬가지임 / 32는 아웃풋 노드의 갯수
+model.add(LSTM(16,input_shape=(3,1))) # 행 빼고 나머지/ 다른 모델들도 마찬가지임 / 32는 아웃풋 노드의 갯수
 model.add(Dense(16,activation='relu'))
 model.add(Dense(8))
 model.add(Dense(16))
