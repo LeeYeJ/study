@@ -14,6 +14,8 @@ train_csv = pd.read_csv(path + 'train.csv', index_col=0)
 test_csv = pd.read_csv(path + 'test.csv', index_col=0)
 
 # 1.2 확인사항
+
+
 print(train_csv.shape, test_csv.shape)
 print(train_csv.columns)
 print('================')

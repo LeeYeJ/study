@@ -63,6 +63,7 @@ model.add(Dense(9,activation='relu'))
 model.add(Dense(6))
 model.add(Dense(1))
 
+model.summary()
 
 # 컴파일 훈련
 model.compile(loss='mse',optimizer='adam')

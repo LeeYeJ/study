@@ -73,6 +73,7 @@ model.add(Dense(9,activation='relu'))
 model.add(Dense(6))
 model.add(Dense(1))
 
+model.summary()
 # input1 = Input(shape=(8,))
 # modell = Dense(10, activation='relu')(input1)
 # model2 = Dense(9, activation='linear')(modell)

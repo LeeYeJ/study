@@ -38,6 +38,8 @@ model.add(Dense(9,activation='relu'))
 model.add(Dense(6))
 model.add(Dense(1))
 
+model.summary()
+
 # model=Sequential()
 # model.add(Dense(7,input_dim=8))
 # model.add(Dense(8))

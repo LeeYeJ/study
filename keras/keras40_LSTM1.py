@@ -1,4 +1,4 @@
-# Rnn에서 제일 성능 좋은게 엘에스티엠
+# Rnn에서 제일 성능 좋은게 엘에스티엠 대신 연산량이 4배 더 많아서 속도가 느릴수있다.
 
 import numpy as np
 from tensorflow.keras.models import Sequential
