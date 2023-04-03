@@ -34,34 +34,43 @@ x_data = train_datagen.flow( # 원 데이터를 증폭이나 변환
     np.zeros(augment_size), # y데이터 : 그림만 그릴거라 필요없어서 걍 0 넣어줘
     batch_size = augment_size,
     shuffle = True
-)
+).next() # 한번 실행시키겠다.
 
-print(x_data)
 
-print(x_data[0]) # x y가 모두 포함
-print(x_data[0][0].shape) #(100, 28, 28, 1)
-print(x_data[0][1].shape) #(100,)
+##############.next() 사용 ################ 현 파일에선 통배치로 들어가서 .next로 첫 튜플에 있는 x,y를 가져온다.
+
+print(x_data) #print(x_data[0]) # x y가 모두 포함
+print(type(x_data)) #<class 'tuple'>
+print(x_data[0]) # x데이터
+print(x_data[1]) # y데이터
+print(x_data[0].shape, x_data[1].shape) # (100, 28, 28, 1) (100,)
+print(type(x_data)) #<class 'tuple'>
+ 
+##############.next() 미사용 ################
+
+# print(x_data[0]) # x y가 모두 포함
+# print(x_data[0][0].shape) #(100, 28, 28, 1)
+# print(x_data[0][1].shape) #(100,)
 
 augment_size = 100 # 변환 데이터는 100개 중 49개
+
+'''
+iterator method
+
+1) hasNext(): 다음 요소에 읽어 올 요소가 있는지 확인 하는 메소드 있으면 true, 없으면 false 를 반환한다. 
+
+2) next(): 다음 요소를 가져온다. 
+
+3) remove(): next()로 읽어온 요소를 삭제한다.
+'''
+
 
 import matplotlib.pylab as plt
 plt.figure(figsize=(7,7))# figsize 그림그릴 판
 for i in range(49):
     plt.subplot(7,7,i+1)
     plt.axis('off')
-    plt.imshow(x_data[0][0][i],cmap = 'gray')
+    # plt.imshow(x_data[0][0][i],cmap = 'gray') # x_data[0] 배치크기 포함 / .next()미사용
+    plt.imshow(x_data[0][i], cmap='gray') # .next() 사용
 plt.show()
 
-'''
-이 코드는 Matplotlib 라이브러리를 사용하여 7x7 크기의 서브플롯(subplot)을 생성하고, MNIST 데이터셋의 첫 번째 이미지 샘플을 시각화하는 코드입니다.
-
-첫째 줄에서는 그림을 그리기 위한 판의 크기를 정의하고, figsize 매개변수를 사용하여 (7,7) 크기로 설정합니다.
-
-for 루프에서는 i가 0에서 48까지 반복하면서, 7x7 서브플롯 중 하나에 이미지를 시각화합니다.
-
-plt.subplot() 함수는 그리드의 위치를 지정하는데 사용됩니다. 여기서는 7x7 그리드에서 i+1번째 위치를 지정합니다.
-
-plt.axis() 함수를 사용하여 서브플롯의 x축과 y축 눈금선을 비활성화하고, plt.imshow() 함수를 사용하여 MNIST 데이터셋에서 첫 번째 샘플의 i번째 이미지를 그립니다. cmap 매개변수를 'gray'로 설정하여 흑백 이미지를 표시합니다.
-
-마지막으로 plt.show() 함수를 사용하여 그림을 표시합니다.
-'''

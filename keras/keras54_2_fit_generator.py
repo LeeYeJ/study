@@ -110,7 +110,7 @@ hist = model.fit_generator(xy_train,
                     epochs=100, # fit generator는 배치 사이즈까지 처리해서 한번에 훈련
                     # steps_per_epoch=32,  # 전체 데이터에서 배치 나눈 값으로 주면 됨
                     validation_data=xy_test,
-                    validation_steps=24) # 전체 데이터 나누기 배치
+                    validation_steps=24) # 발리 데이터 나누기 배치
 
 from sklearn.metrics import accuracy_score
 

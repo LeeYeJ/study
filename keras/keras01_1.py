@@ -6,3 +6,11 @@ print("a와 b를 더한 값 :", c)
 
 # 실행 명령키 : ctrl + F5
 
+'''
+텐서플로 자격증 문제
+1. keras01
+2. mnist / fashion mnist
+3. 이미지
+4. 자연어 처리
+5. 시계열
+'''

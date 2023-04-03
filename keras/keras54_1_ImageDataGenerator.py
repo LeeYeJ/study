@@ -4,7 +4,7 @@ import numpy as np
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 #이미지 전처리
-train_datagen = ImageDataGenerator(
+train_datagen = ImageDataGenerator( 
     rescale=1./255,         #'.':부동소수점으로 연산해라  #MinMaxscaler:정규화(Nomalization)=이미지: /255
     horizontal_flip=True,   #수평을 반전(상하반전)  #주의) 숫자 6,9있을 경우 사용하면 안됨
     vertical_flip=True,     #좌우반전
@@ -66,7 +66,7 @@ print(xy_train[0])
 y[0] : array([0., 1., 1., 1., 1.]
 '''
 
-# print(xy_train.shape) #error => #numpy, pandas만
+# print(xy_train.shape) #error => #numpy, pandas만 / 이터레이터와 리스트는 shape 안먹음.
 print(len(xy_train))        # 32 /(160/5(batch_size))/ [0]~[31]까지 있음/ [0][0]=x, [0][1]=y
 print(len(xy_train[0]))     # 2  (x,y)/ 첫번째 batch
 print(xy_train[0][0])       # x 5개 들어가있음 (batch=5일때)
