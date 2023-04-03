@@ -74,8 +74,6 @@ y_test = to_categorical(y_test)
 
 print(type(x_augmented))
 
-
-
 # 모델 만들어보자 # 증폭 성능 비교
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense,Conv2D, Flatten
@@ -96,7 +94,7 @@ model.add(Dense(10,activation='softmax'))
 import time
 start_time=time.time()
 
-model.compile(loss='categorical_crossentropy', optimizer='adam', metrics='acc')
+model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['acc'])
 
 # import datetime # 시간을 저장해줌
 # date = datetime.datetime.now() # 현재 시간
@@ -127,15 +125,15 @@ print('results :', results)
 
 y_pred=model.predict(x_test)
 # print(type(y_pred))
-# y_test_acc=np.argmax(y_test) 
+y_test_acc=np.argmax(y_test) 
 # print(y_test_acc) 
-# y_pred=np.argmax(y_pred)
+y_pred=np.argmax(y_pred)
 # print(y_pre) 
 
 
 
 from sklearn.metrics import accuracy_score
-acc=accuracy_score(y_pred,y_test)   
+acc=accuracy_score(y_pred,y_test_acc)   
 print('acc :', acc)
 
 print('time:', round(end_time-start_time,2))
