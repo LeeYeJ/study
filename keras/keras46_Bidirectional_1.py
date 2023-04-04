@@ -21,7 +21,7 @@ print(x.shape) # (7, 3, 1)
 
 #모델구성
 model= Sequential()
-model.add(Bidirectional(LSTM(10,return_sequences=True),input_shape=(3,1))) #Bidirectional 혼자 못씀 양방향으로 쓰기위해/ RNN 모델을 래핑하는 형태로 써야됨
+model.add(Bidirectional(LSTM(10,return_sequences=True),input_shape=(3,1))) #Bidirectional 혼자 못씀 양방향으로 쓰기위해/ RNN 모델을 래핑하는 형태로 써야
 model.add(LSTM(10,return_sequences=True))
 model.add(Bidirectional(GRU(10)))
 
