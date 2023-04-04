@@ -81,7 +81,7 @@ model.add(Dense(1,activation='sigmoid'))
 
 model.summary()
 
-model.compile(loss = 'binary_crossentropy', optimizer = 'adam', metrics=['acc'])
+model.compile(loss ='binary_crossentropy', optimizer ='adam', metrics=['acc'])
 model.fit(pad_x, labels, epochs=30, batch_size=8)
 
 acc = model.evaluate(pad_x,labels)[1] # -> loss 와 acc 값
