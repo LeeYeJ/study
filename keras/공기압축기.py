@@ -111,8 +111,11 @@ submission = pd.read_csv(path+'answer_sample.csv')
 
 # Combine train and test data
 data = pd.concat([train_data, test_data], axis=0).values # 넘파이 변환
+print(type(data))
 
-print(type(data)) 
+# train_data = train_data.values
+# test_data = test_data.values
+# print(type(train_data))
 
 scaler = MinMaxScaler()  # scaler 객체 생성
 scaled_data = scaler.fit_transform(data)
@@ -121,8 +124,8 @@ scaled_data = scaler.fit_transform(data)
 # ...
 
 # Train isolation forest model on train data
-model = IsolationForest(random_state=3245418,
-                        n_estimators=3000, max_samples=20, contamination=0.01, max_features=7)
+model = IsolationForest(random_state=324541454,
+                        n_estimators=3000, max_samples=200, contamination=0.04, max_features=7)
 '''
 random_state: 난수 발생 시드값입니다. 이 값을 고정하면 모델이 항상 같은 결과를 출력합니다.
 n_estimators: Isolation Tree(결정 트리의 집합)의 개수입니다. 이 값이 클수록 모델의 정확도는 높아지지만, 계산 시간이 늘어납니다.
@@ -130,9 +133,9 @@ max_samples: 각 Isolation Tree에서 사용할 샘플의 최대 개수입니다
 contamination: 전체 데이터셋 중 이상치로 판단할 데이터셋의 비율입니다. 이 값이 작을수록 이상치로 판단할 데이터셋이 적어지므로, 더 엄격한 기준으로 이상치를 탐지합니다.
 max_features: 각 Isolation Tree에서 사용할 최대 특징의 수입니다. 이 값을 작게 설정하면 이상치를 탐지하는 데 민감해집니다.
 '''
-model.fit(train_data) # 트레인 데이터로 훈련
+model.fit(data) # 트레인 데이터로 훈련
 
-joblib.dump(model, './_save/AI_save_model/isolation_forest3.joblib') # 가중치 저장
+joblib.dump(model, './_save/AI_save_model/isolation_forest6.joblib') # 가중치 저장
 
 # andom_state=640874, n_estimators=500, max_samples=1000, contamination=0.05, max_features=5)
 
