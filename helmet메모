@@ -10,3 +10,4 @@ python train.py --img 640 --batch 16 --epochs 10 --data coco128.yaml --weights y
 (Inference)
 python detect.py --source=C:\yolov5-master\data\images --weights=C:\yolov5-master\runs\train\exp7\weights\best.pt --img 416 --conf 0.5 --save-txt
 
+
