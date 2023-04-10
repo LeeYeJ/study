@@ -29,7 +29,7 @@ x_train = pad_sequences(x_train,padding='pre',maxlen=250,
 print(x_train.shape) #(8982, 100)
 
 # 나머지 전처리
-x_test = pad_sequences(x_test,padding='pre',maxlen=250,
+x_test = pad_sequences(x_test,padding='pre',maxlen=250  ,
                         truncating='pre') # 뒤에 100개 남기고 앞을 잘라버린다.
 print(x_test.shape) #(2246, 100)
 
