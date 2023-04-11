@@ -24,3 +24,4 @@ python detect.py --source=C:\yolov5-master\data\images --weights=C:\yolov5-maste
 - 라벨 아홉가지 ('blue','brown','green','head','orange','person','red','silver','white','yellow')
 train - exp12 
 detect - exp8 성능 안좋음
+
