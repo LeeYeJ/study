@@ -25,7 +25,3 @@ python detect.py --source=C:\yolov5-master\data\images --weights=C:\yolov5-maste
 train - exp12 
 detect - exp8 성능 안좋음
 
-
-
-
-
