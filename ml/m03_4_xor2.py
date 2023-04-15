@@ -21,4 +21,5 @@ acc = accuracy_score(y_data,y_predict)
 print('acc :', acc)
 '''
 
+
 '''
