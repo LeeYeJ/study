@@ -1,5 +1,6 @@
 # 그물망처럼 찾겠다.
-# 파라미터 전체를 다 하겠다. / 모델 정의 부분이나 모델 훈련 부분에 있음
+# 파라미터 전체를 다 돌린다. / 모델 정의 부분이나 모델 훈련 부분에 있음
+# 이 파일에선 for문으로 최적의 파라미터를 찾았지만 사실 쉽게 쓸수있게 만들어져있음
 
 import numpy as np
 from sklearn.datasets import load_iris
@@ -19,7 +20,7 @@ x_train,x_test,y_train,y_test = train_test_split(
 gamma = [0.001,0.01,0.1,1,10,100] 
 C = [0.001,0.01,0.1,1,10,100] # 곡선으로 휜다.
 
-
+# 리스트 안의 파라미터 값들중 최적의 값을 찾기위해 for문 돌려봄
 max_score=0
 
 for i in gamma:
