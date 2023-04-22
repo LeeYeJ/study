@@ -93,7 +93,7 @@
 
 
 
-
+# lof모델
 
 import pandas as pd
 from sklearn.ensemble import IsolationForest
@@ -110,15 +110,50 @@ test_data = pd.read_csv(path+'test_data.csv')
 submission = pd.read_csv(path+'answer_sample.csv')
 
 # Combine train and test data
-data = pd.concat([train_data, test_data], axis=0).values # 넘파이 변환
-print(type(data))
+# data = pd.concat([train_data, test_data], axis=0).values # 넘파이 변환
+# print(type(data))
 
-# train_data = train_data.values
-# test_data = test_data.values
-# print(type(train_data))
+train_data = train_data.values
+test_data = test_data.values
+print(type(train_data))
 
 scaler = MinMaxScaler()  # scaler 객체 생성
-scaled_data = scaler.fit_transform(data)
+scaler_data = scaler.fit_transform(train_data)
+test_data=scaler.transform(test_data)
+
+import numpy as np
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
+from keras.layers import Input, LSTM, RepeatVector
+from keras.models import Model
+
+# # LSTM AE 모델 구축
+# input_shape = train_data.shape[0:]
+# print(input_shape) # (2463, 8)
+# latent_dim = 64
+
+# inputs = Input(shape=input_shape)
+# print(inputs.shape) #(None, 2463, 8)
+
+# # Encoder
+# encoded = LSTM(latent_dim)(inputs)
+
+# # Decoder
+# decoded = RepeatVector(input_shape[0])(encoded)
+# decoded = LSTM(input_shape[1], return_sequences=True)(decoded)
+
+# # Autoencoder
+# autoencoder = Model(inputs, decoded)
+# autoencoder.compile(optimizer='adam', loss='mae')
+
+# # 데이터 학습
+# # x_train, x_test = train_test_split(train_data)
+# print(train_data.shape)
+# autoencoder.fit(train_data, epochs=10, batch_size=32)
+
+# # LSTM AE를 통해 데이터의 특징 추출
+# encoder = Model(inputs, encoded)
+# encoded_data = encoder.predict(test_data)
 
 # Preprocess data
 # ...
@@ -133,7 +168,7 @@ max_samples: 각 Isolation Tree에서 사용할 샘플의 최대 개수입니다
 contamination: 전체 데이터셋 중 이상치로 판단할 데이터셋의 비율입니다. 이 값이 작을수록 이상치로 판단할 데이터셋이 적어지므로, 더 엄격한 기준으로 이상치를 탐지합니다.
 max_features: 각 Isolation Tree에서 사용할 최대 특징의 수입니다. 이 값을 작게 설정하면 이상치를 탐지하는 데 민감해집니다.
 '''
-model.fit(data) # 트레인 데이터로 훈련
+model.fit(train_data) # 트레인 데이터로 훈련
 
 joblib.dump(model, './_save/AI_save_model/isolation_forest6.joblib') # 가중치 저장
 

@@ -60,8 +60,11 @@ print(train_csv.shape)
 
 
 # 1.5 x, y 분리
-x = train_csv.drop(['Calories_Burned'], axis=1)
+x = train_csv.drop(['Calories_Burned','Height(Remainder_Inches)','Weight_Status'], axis=1)
 y = train_csv['Calories_Burned']
+
+test_csv = test_csv.drop(['Height(Remainder_Inches)','Weight_Status',], axis=1)
+
 
 print(x.shape,y.shape) #(7500, 9) (7500,)
 
@@ -73,12 +76,12 @@ print(x_test.shape) #(1500, 9)
 print(test_csv.shape) #(7500, 9)
 
 # 1.7 Scaler
-scaler = MinMaxScaler() # 여기서 어레이 형태로 해서 아래 리쉐잎때 변환안해줘도됨
-x_train = scaler.fit_transform(x_train)
-x_test = scaler.transform(x_test)
-test_csv = scaler.transform(test_csv)
+# scaler = MinMaxScaler() # 여기서 어레이 형태로 해서 아래 리쉐잎때 변환안해줘도됨
+# x_train = scaler.fit_transform(x_train)
+# x_test = scaler.transform(x_test)
+# test_csv = scaler.transform(test_csv)
 
-print(x_train)
+# print(x_train)
 
 # 2. 모델구성
 # model = Sequential()
@@ -89,17 +92,17 @@ print(x_train)
 # model.add(Dense(8))
 # model.add(Dense(1))
 
-x_train= x_train.reshape(6000,9,1)
-x_test= x_test.reshape(1500,9,1)
-test_csv = test_csv.reshape(7500,9,1) # test파일도 모델에서 돌려주니까 리쉐잎 해줘야됨.
+# x_train= x_train.reshape(6000,9,1)
+# x_test= x_test.reshape(1500,9,1)
+# test_csv = test_csv.reshape(7500,9,1) # test파일도 모델에서 돌려주니까 리쉐잎 해줘야됨.
 
 
-n_splits = 5 # 디폴트값 5
-kfold = KFold(n_splits = n_splits, shuffle=True,random_state=123) 
+# n_splits = 5 # 디폴트값 5
+# kfold = KFold(n_splits = n_splits, shuffle=True,random_state=123245) 
 
 model = RandomizedSearchCV(RandomForestRegressor(),
                      parameters, 
-                     cv = 5,  # 분류의 디폴트는 StratifiedKFold이다.
+                    #  cv = 5,  # 분류의 디폴트는 StratifiedKFold이다.
                     #  cv = kf,  
                      verbose=1, 
                      refit=True, # 최적의 값을 보관함 / 최적의 값을 출력 -> 통상적으로 True로 함
@@ -137,11 +140,11 @@ model = RandomizedSearchCV(RandomForestRegressor(),
 # model = Model(inputs=input1, outputs=output1)
 
 # 3. 컴파일, 훈련
-model.compile(loss='mse', optimizer='adam')
+# model.compile(loss='mse', optimizer='adam')
 es = EarlyStopping(monitor='val_loss', patience=300, verbose=1, mode='min', restore_best_weights=True)
-hist = model.fit(x_train, y_train, epochs=2000, batch_size=30, verbose=1, validation_split=0.2, callbacks=[es])
+hist = model.fit(x_train, y_train)
 
-model.save('./_save/kcal/kcal_save_model01.h5')
+# model.save('./_save/kcal/kcal_save_model01.h5')
 
 #<trian>
 print('최적의 매개변수 :',model.best_estimator_) # 가장 좋은 평가 뽑기
@@ -158,32 +161,37 @@ print('model.score :',model.score(x_test,y_test)) # 테스트한 모델 스코�
 # model.score : 1.0
 
 y_predict = model.predict(x_test)
-print('acc :',r2_score(y_test,y_predict))
+print('r2_score :',r2_score(y_test,y_predict))
 # acc : 1.0
 
 y_pred_best = model.best_estimator_.predict(x_test)
-print('최적 튠 ACC :',r2_score(y_test,y_pred_best))
-# 최적 튠 ACC : 1.0 
-
-# predict / best_estimator_ 값이 같음 -> 최적값 저장됐으니까
-
-print('걸린 시간 :',round(end_time - start_time,2),'초')
-# 걸린 시간 : 3.18 초
-
-# 4. 평가, 예측
-loss = model.evaluate(x_test, y_test)
-print('loss : ', loss)
-
-y_predict = model.predict(x_test)
-
-r2 = r2_score(y_test, y_predict)
-print('r2 : ', r2)
 
 # RMSE 함수 정의
 def RMSE(y_test,y_pre):
     return np.sqrt(mean_squared_error(y_test,y_pre)) #정의
-rmse=RMSE(y_test,y_predict) #사용
-print('RMSE :',rmse)
+rmse=RMSE(y_test,y_pred_best)#사용
+print('최적의 튠 RMSE :',rmse)
+
+# y_pred_best = model.best_estimator_.predict(x_test)
+# print('최적 튠 RMSE :',rmse)
+# 최적 튠 ACC : 1.0 
+
+# predict / best_estimator_ 값이 같음 -> 최적값 저장됐으니까
+
+# # 4. 평가, 예측
+# loss = model.evaluate(x_test, y_test)
+# print('loss : ', loss)
+
+# y_predict = model.predict(x_test)
+
+# r2 = r2_score(y_test, y_predict)
+# print('r2 : ', r2)
+
+# # RMSE 함수 정의
+# def RMSE(y_test,y_pre):
+#     return np.sqrt(mean_squared_error(y_test,y_pre)) #정의
+# rmse=RMSE(y_test,y_predict) #사용
+# print('RMSE :',rmse)
 
 # 4.1 내보내기
 import datetime
@@ -197,7 +205,6 @@ y_submit = y_submit.fillna(y_submit.median()) # median -> nan값을 중간값으
 # y_submit = y_submit.fillna(y_submit.mode()[1]) # mode -> nan값을 최빈값으로 대체해준다                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
 y_submit = np.array(y_submit)
 submission = pd.read_csv(path + 'sample_submission.csv', index_col=0)
-submission['SalePrice'] = y_submit
-submission.to_csv(path_save + 'kcal_01' + date + '.csv')
-
+submission['Calories_Burned'] = y_submit
+submission.to_csv(path_save + 'kcal_' + date + '.csv')
 

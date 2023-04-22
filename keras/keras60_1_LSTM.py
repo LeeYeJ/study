@@ -58,6 +58,7 @@ print(pad_x.shape) # (14, 5)
 pad_x.reshape(pad_x.shape[0],pad_x.shape[1],1)
 
 word_size = len(token.word_index)
+print(token.word_index)
 print('단어 사전의 갯수 :',word_size) # 단어 사전의 갯수 : 28
 
 #2. 모델

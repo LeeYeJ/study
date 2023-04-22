@@ -20,14 +20,14 @@ print(x) # [[3, 4, 2, 2, 5, 6, 7, 1, 1, 1, 8]]  -> (1행 11열) /  수치만 보
 ########## 1. to_categorical ########## 
 # print(len(x)) # 왜 1이야
 
-from tensorflow.keras.utils import to_categorical
-x = to_categorical(x)
-print(x)
-print(x.shape) # (1, 11, 9)
+# from tensorflow.keras.utils import to_categorical
+# x = to_categorical(x)
+# print(x)
+# print(x.shape) # (1, 11, 9)
 
 # Tokenizer는 1부터 카운턴데 원핫해주면 0부터 카운트돼서 맨앞 열에 0이 생겼다. -> 앞에 0만 들어간 열을 지워주면 됨
 
-######### 2. get_dummies ############# 1차원으로 받아들여야됨
+# ######### 2. get_dummies ############# 1차원으로 받아들여야됨
 # import pandas as pd
 
 # # x = pd.get_dummies(np.array(x).reshape(11,)) # unhashable type: 'list' -> x의 텍스트가 리스트 형태이다 / Data must be 1-dimensional 겟더미는 1차원으로 받음 따라서 리쉐잎
@@ -38,9 +38,9 @@ print(x.shape) # (1, 11, 9)
 #넘파이로 바꿔야되는데 왜 바꿔야할까 왜 리스트는 안될까 -> 다음 파일에 이유가 있어
 
 ########## 3. 사이킷런 onehot ########## 2차원으로 받아들여야됨
-# from sklearn.preprocessing import OneHotEncoder
-# onehot_encoder = OneHotEncoder()
-# x = onehot_encoder.fit_transform(np.array(x).reshape(11,1)).toarray()
-# print(x)
-# print(x.shape) # (11,8)
+from sklearn.preprocessing import OneHotEncoder
+onehot_encoder = OneHotEncoder()
+x = onehot_encoder.fit_transform(np.array(x).reshape(11,1)).toarray()
+print(x)
+print(x.shape) # (11,8)
 
