@@ -77,6 +77,8 @@ model.add(Dense(10,activation='relu'))
 model.add(Dense(16))
 model.add(Dense(1,activation='sigmoid'))
 
+model.summary()
+
 model.compile(loss = 'binary_crossentropy', optimizer = 'adam', metrics=['acc'])
 model.fit(pad_x, labels , epochs=30, batch_size=8)
 

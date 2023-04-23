@@ -5,11 +5,12 @@ from sklearn.preprocessing import MinMaxScaler, StandardScaler, MaxAbsScaler, Ro
 from sklearn.model_selection import train_test_split
 from tensorflow.python.keras.callbacks import EarlyStopping
 from sklearn.model_selection import GridSearchCV,RandomizedSearchCV
-
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import r2_score
 import numpy as np
 import pandas as pd
+
+#ReduceLROnPlateau 써보기
 
 # 1. 데이터
 # 1.1 경로, 가져오기
@@ -42,8 +43,12 @@ print(train_csv.shape)
 
 
 # 1.5 x, y 분리
-x = train_csv.drop(['Calories_Burned'], axis=1)
+x = train_csv.drop(['Calories_Burned','Height(Remainder_Inches)','Weight_Status'], axis=1)
 y = train_csv['Calories_Burned']
+
+test_csv = test_csv.drop(['Height(Remainder_Inches)','Weight_Status',], axis=1)
+# x = train_csv.drop(['Calories_Burned'], axis=1)
+# y = train_csv['Calories_Burned']
 
 print(x.shape,y.shape) #(7500, 9) (7500,)
 
@@ -55,10 +60,11 @@ print(x_test.shape) #(1500, 9)
 print(test_csv.shape) #(7500, 9)
 
 # 1.7 Scaler
-scaler = MinMaxScaler() # 여기서 어레이 형태로 해서 아래 리쉐잎때 변환안해줘도됨
-x_train = scaler.fit_transform(x_train)
-x_test = scaler.transform(x_test)
-test_csv = scaler.transform(test_csv)
+# scaler = MinMaxScaler() # 여기서 어레이 형태로 해서 아래 리쉐잎때 변환안해줘도됨
+# x_train = scaler.fit_transform(x_train)
+# x_test = scaler.transform(x_test)
+
+# test_csv = scaler.transform(test_csv)
 
 print(x_train)
 
@@ -71,14 +77,17 @@ print(x_train)
 # model.add(Dense(8))
 # model.add(Dense(1))
 
-x_train= x_train.reshape(6000,9,1)
-x_test= x_test.reshape(1500,9,1)
-test_csv = test_csv.reshape(7500,9,1) # test파일도 모델에서 돌려주니까 리쉐잎 해줘야됨.
+x_train = x_train.to_numpy()
+x_test = x_test.to_numpy()
+x_train= x_train.reshape(6000,7,1)
+x_test= x_test.reshape(1500,7,1)
+test_csv = test_csv.to_numpy()
+test_csv = test_csv.reshape(7500,7,1)# test파일도 모델에서 돌려주니까 리쉐잎 해줘야됨.
 
 
 model = Sequential()
-model.add(LSTM(16,input_shape=(9,1),activation='linear',return_sequences=True))
-model.add(LSTM(16,input_shape=(9,1),activation='relu'))
+model.add(LSTM(32,input_shape=(7,1),activation='linear',return_sequences=True))
+model.add(LSTM(16,activation='linear'))
 model.add(Dense(32,activation='selu'))
 model.add(Dense(42))
 model.add(Dense(13))

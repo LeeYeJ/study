@@ -54,11 +54,11 @@ print(pad_x)
  [ 0  4  3 26 27]
  [ 0  0  0  4 28]]
 '''
-print(pad_x.shape) # (14, 5)
+print(pad_x.shape) # (14, 6)
 
 # pad_x.reshape(14,5,1)
 pad_x = pad_x.reshape(pad_x.shape[0],pad_x.shape[1],1)
-print(pad_x.shape)
+print(pad_x.shape) # (14, 6, 1)
 
 word_size = len(token.word_index)
 print('단어 사전의 갯수 :',word_size) # 단어 사전의 갯수 : 28
@@ -67,7 +67,8 @@ print('단어 사전의 갯수 :',word_size) # 단어 사전의 갯수 : 28
 #2. 모델
 model= Sequential()
 # model.add(Reshape(target_shape=(5,1), input_shape=(5,)))
-model.add(Embedding(28,32,input_shape=(6,1)))
+# model.add(Embedding(28,32,input_shape=(6,1)))
+model.add(Embedding(28,100,input_shape=(6,1)))
 # model.add(Bidirectional(LSTM(10,return_sequences=True),input_shape=(5,1))) #Bidirectional 혼자 못씀 양방향으로 쓰기위해/ RNN 모델을 래핑하는 형태로 써야
 # model.add(LSTM(10))
 model.add(Flatten())
@@ -81,6 +82,8 @@ model.add(Dense(8))
 model.add(Dense(10,activation='relu'))
 model.add(Dense(16))
 model.add(Dense(1,activation='sigmoid'))
+
+model.summary()
 
 model.compile(loss = 'binary_crossentropy', optimizer = 'adam', metrics=['acc'])
 model.fit(pad_x, labels , epochs=30, batch_size=8)

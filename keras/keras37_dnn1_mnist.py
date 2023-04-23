@@ -21,6 +21,7 @@ print(np.unique(y_train)) # [0 1 2 3 4 5 6 7 8 9]
 y_train = to_categorical(y_train)
 y_test = to_categorical(y_test)
 
+
 print(x_train.shape, x_test.shape) #(60000, 28, 28) (10000, 28, 28)
 print(y_train.shape, y_test.shape) #(60000, 10) (10000, 10)
 
