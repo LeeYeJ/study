@@ -16,3 +16,4 @@ plt.subplot(1,2,2)
 plt.hist(log_data,bins=50,color='red',alpha = 0.5)
 plt.title('Log Transformed Data')
 plt.show()
+
