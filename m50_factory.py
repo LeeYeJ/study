@@ -42,6 +42,7 @@ print(len(li)) #17
 
 train_dataset = pd.concat(li,axis=0, ignore_index=True) 
 print(train_dataset) #[596088 rows x 4 columns]
+    
 
 ########### test #############
 li=[]
