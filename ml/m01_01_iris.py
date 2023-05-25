@@ -23,6 +23,7 @@ kfold = KFold(n_splits = n_splits, shuffle=True,random_state=123) #
 # x,y = fetch_covtype(return_X_y=True)
 
 # print(x.shape, y.shape)
+
 #2. 모델구성
 # from tensorflow.keras.models import Sequential
 # from tensorflow.keras.layers import Dense
