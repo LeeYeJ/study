@@ -6,6 +6,7 @@ from tensorflow.keras.layers import Dense
 x = np.array([1,2,3,4,5])
 y = np.array([1,2,3,5,4])
 
+
 #2. 모델 구성 
 model = Sequential()
 model.add(Dense(5,input_dim=1)) 
