@@ -2,6 +2,7 @@
 
 # 가중치 동결과 하지 않았을때 , 그리고 원래와 성능 비교
 # Flatten과 GAP과 차이
+
 import numpy as np
 from tensorflow.keras.models import Sequential, Model
 from tensorflow.keras.layers import Dense,Flatten,Dropout,Input
