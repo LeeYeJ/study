@@ -4,6 +4,7 @@
 # 비지도 학습
 # 생성 모델류는 loss에 너어무 의존하면 안됨 눈으로 봐야돼
 
+
 import numpy as np
 from tensorflow.keras.datasets import mnist
 
