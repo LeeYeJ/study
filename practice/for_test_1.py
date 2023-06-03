@@ -7,6 +7,7 @@ from sklearn.svm import LinearSVC
 from sklearn.tree import DecisionTreeClassifier,DecisionTreeRegressor
 from sklearn.preprocessing import StandardScaler,MaxAbsScaler,MinMaxScaler, RobustScaler
 
+
 # 데이터
 data_list = [load_breast_cancer(return_X_y=True),
              load_iris(return_X_y=True),
