@@ -1,3 +1,4 @@
+# 자동학습
 import autokeras as ak
 from keras.datasets import mnist
 print(ak.__version__)
