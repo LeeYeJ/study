@@ -33,7 +33,6 @@ autoencoder.summary()
 autoencoder.compile(optimizer = 'adam',loss='mse') # 각 셀 값의 비교를 해야하므로 acc 의미없음, loss 비교를 하자
 # autoencoder.compile(optimizer = 'adam',loss='binary_crossentropy',metrics=['acc']) # sigmoid도 mse 써도됨 성능만 좋으면 돼 
 
-
 autoencoder.fit(x_train, x_train, epochs =30, batch_size = 128, validation_split=0.2 ) # x_train으로 x_train을 훈련시킨다.
 
 
