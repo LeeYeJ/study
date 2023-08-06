@@ -9,7 +9,6 @@ from sklearn.metrics import mean_absolute_error,r2_score
 
 # / // \ \\ 같다 (\n처럼 예약어가 명시되면 노란색으로 표시될수있으니까 주의해서 쓰자)
 
-
 path ='./_data/AI_SPARK/'
 ''' 
 -data하단
