@@ -2,7 +2,7 @@
 #반전시키면 알아볼수있음? / 바이너리 -> 수치화/ numpy -> unique = padas -> value_counts
 
 import numpy as np
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.preprocessing.image import ImageDataGenerator # 객체 옵션 정의
 
 #이미지 전처리
 train_datagen = ImageDataGenerator(
